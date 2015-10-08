@@ -1,9 +1,9 @@
 <?php
 
 // pour POO / MySQL
-define("DB_SELECT","mysql:host=localhost;dbname=mvcoo;charset=utf-8");
-define("DB_USER","root");
-define("DB_PWD","");
+define("DB_SELECT", "mysql:host=localhost;dbname=mvcoo;charset=utf8");
+define("DB_USER", "root");
+define("DB_PWD", "");
 
 // pour l'unique ADMIN
 define("ADMIN_LOGIN", "superman");

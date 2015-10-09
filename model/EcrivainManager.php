@@ -54,4 +54,19 @@ class EcrivainManager {
         return $recupUnHasard->fetch(PDO::FETCH_OBJ);
     }
 
+    public function insertEcrivain(Ecrivain $met) {
+
+        $nom = $met->getLenom();
+        $bio = $met->getLabio();
+        $sciecle_id = $met->getSciecle_id();
+
+        $prepare = $this->db->prepare("INSERT INTO ecrivain VALUES (NULL,?,?,?);");
+
+        $prepare->bindParam(1, $nom, PDO::PARAM_STR);
+        $prepare->bindParam(2, $bio, PDO::PARAM_STR);
+
+        $prepare->bindParam(3, $sciecle_id, PDO::PARAM_STR);
+        return $prepare->execute();
+    }
+
 }

@@ -32,10 +32,6 @@ class LivreAdminManager extends LivreManager {
         return $recupLes->fetch(PDO::FETCH_OBJ);
     }
 
-    public function recupLeLivre($id) {
-        $id = (int) $id;
-        $recupLeLivre=$this->db->query("");
-        return $recupLeLivre->fetch(PDO::FETCH_OBJ);
-    }
+
 
 }

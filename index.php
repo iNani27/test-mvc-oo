@@ -21,8 +21,9 @@ if(isset($_GET['connect'])||isset($_GET['deconnect'])){
 }
 
 // si on est connecté comme admin
-if(isset($_SESSION['idsession'])){
+elseif(isset($_SESSION['idsession'])){
     require 'controller/AdminController.php';
+
 }
 
 // sinon (on est un simple visiteur du site)

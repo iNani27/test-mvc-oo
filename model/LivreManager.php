@@ -51,4 +51,17 @@ class LivreManager {
         return $prepare->execute();
     }
 
+    // on modifie un livre
+    public function modifLivre(Livre $objet, $idlivre) {
+        // protection en cas d'attaque
+        $idlivre = (int) $idlivre;
+
+        $prepare = $this->db->prepare("UPDATE livre SET letitre=?, ladescription=?, laperiode=? WHERE id = $idlivre;");
+        $prepare->bindValue(1, $objet->getLetitre(), PDO::PARAM_STR);
+        $prepare->bindValue(2, $objet->getLadescription(), PDO::PARAM_STR);
+        $prepare->bindValue(3, $objet->getLasortie(), PDO::PARAM_STR);
+
+        return $prepare->execute();
+    }
+
 }

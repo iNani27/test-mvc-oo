@@ -3,12 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>Les Poètes Francophones</title>
-
-        <script src="vue/js/sup.js"></script>     
+  
     </head>
 
     <body>
-        <h2>Bienvenue sur Les Poètes Francophones</h2>
+        <h2>Bienvenue Admin, sur Les Poètes Francophones</h2>
         <?php include 'vue/menu.php'; ?>
         <?php
         /* Dans cette vue 
@@ -30,7 +29,7 @@
                     echo "<input type='radio' name='new[sciecle_id]' value='$value->id' />$value->laperiode<br/>";
                 }
                 ?>
-                <input type="submit" value="Créer l'écrivain"/>
+                <input type="submit" value="Ajouter un écrivain" />
             </form>
         </div>   
 
@@ -41,18 +40,16 @@
                 La description du livre: <textarea name="livre[ladescription]"></textarea><br/>
                 La sortie du livre: <input type="text" name="livre[lasortie]" required><br/>
                 <?php
-              
                 /* boucle d'affichage des choix des écrivains */
                 foreach ($boucle as $value) {
 
                     echo "<input type='radio' name='livre[ecrivain_id]' value='$value->id' />$value->lenom<br/>";
                 }
                 ?>
-                <input type="submit" value="Ajouter un livre"/>
+                <input type="submit" value="Ajouter un livre" />
             </form>
         </div> 
-
-
+       
 
 
 

@@ -24,7 +24,7 @@ class LivreAdminManager extends LivreManager {
         GROUP_CONCAT(l.ladescription SEPARATOR ' || ') AS LesDesc, 
         GROUP_CONCAT(l.lasortie SEPARATOR ' || ') AS LesDates
 	FROM ecrivain e 
-    INNER JOIN livre l
+    LEFT JOIN livre l
     ON e.id=l.ecrivain_id
     WHERE e.id=$id
     GROUP BY l.ecrivain_id;");

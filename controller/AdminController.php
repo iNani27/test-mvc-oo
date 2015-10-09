@@ -78,8 +78,8 @@ if (isset($_POST['livre'])) {
 // Liste des écrivains
     $listeEcrivain = new EcrivainManager(DB_SELECT, DB_USER, DB_PWD, true);
     $boucle = $listeEcrivain->recupTous();
-    
-    
+
+
 // créer une instance de livre
     $newLivre = new Livre($_POST['livre']);
 // création d'un livre
@@ -92,53 +92,33 @@ if (isset($_POST['livre'])) {
 
 
 
+// Si l'admin veut modifier 
 
+if (isset($_GET['modif_livre'])) {
+    // Afficher tous les livres avec modif
+    $recup_tous = new LivreManager(DB_SELECT, DB_USER, DB_PWD, true);
 
-
-
-
-
-
-
-
-
-// on teste le $_GET récupérer (clic sur supprimer 
-// si on a confirmé la suppression
-if (isset($_GET['sup']) && ctype_digit($_GET['sup'])) {
-    $idcomment = (int) $_GET['sup'];
-
-    $moi->supComment($idcomment);
-    header("Location: ./");
+    $lesLivres = $recup_tous->recupTous();
+    // on appel la vue pour les afficher
+    include 'vue/modif.php';
 }
 
-// si on a cliquer sur l'icône de modif
-if (isset($_GET['modif']) && ctype_digit($_GET['modif'])) {
-    $idcomment = (int) $_GET['modif'];
-    $affiche = $moi->recupLeComment($idcomment);
-    /* var_dump($affiche); */
-    if ($affiche) {
-        // on appel la vue pour les afficher
-        include 'vue/modif.php';
-    } else {
-        // Si l'id modif n'existe pas on est redirigé vers l'accueil
+
+// Si l'admin a cliqué sur "Modifier" 
+if (isset($_GET['modif_livre']) && ctype_digit($_GET['modif_livre']) && isset($_POST['lesmodif'])) {
+    $idlivre = (int) $_POST['lesmodif[id]'];
+    $pour_modif = new Livre($_POST['lesmodif']);
+    $livre_modifie = new LivreManager(DB_SELECT, DB_USER, DB_PWD, true);
+    // update du livre
+            if ($livre_modifie->modifLivre($pour_modif, $idlivre)) {
         header("Location: ./");
     }
 }
 
 
 
-// on a cliqué sur modifier
-if (isset($_GET['modif']) && ctype_digit($_GET['modif']) && isset($_POST['tabUp'])) {
-    $idcomment = (int) $_GET['modif'];
-    $pour_modif = new CommentClass($_POST['tabUp']);
-    /* var_dump($pour_modif); */
-    // update du comment
-    if ($moi->modifComment($pour_modif, $idcomment)) {
-        header("Location: ./");
-    } else {
-        
-    }
-}
+
+
 
 
 
